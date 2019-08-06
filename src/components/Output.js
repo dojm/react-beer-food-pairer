@@ -1,5 +1,5 @@
 import React from 'react';
-import Beer from './Beer';
+import Beer from './Beer'
 
 const Output = ({output}) => {
   const outputList = output.map((beer, i) => {

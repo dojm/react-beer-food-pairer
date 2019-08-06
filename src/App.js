@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header';
-import Input from './Input';
-import Message from './Message';
-import Output from './Output';
+import Header from './components/Header';
+import Input from './components/Input';
+import Message from './components/Message';
+import Output from './components/Output';
+import Loader from './components/Loader';
 
 class App extends Component {
   constructor(props) {
@@ -11,8 +12,34 @@ class App extends Component {
 
     this.state = {
       foodInput: '',
-      output: []
+      output: [],
+      isLoaded: true,
+      errorMessage: ''
     }
+  }
+
+  validate = () => {
+    let foodQuery = this.state.foodInput;
+    const regex = /^[A-Z]+$/i;
+    let regexResult = regex.test(foodQuery);
+
+    if(!this.state.foodInput) {
+      this.setState({
+        errorMessage: 'Please enter a query',
+        isLoaded: true,
+      });
+      return false;
+    }
+
+    if(regexResult === false) {
+      this.setState({
+        errorMessage: 'Please enter alphabetical characters only',
+        isLoaded: true,
+      });
+      return false;
+    }
+
+    return true;
   }
 
   onHandleChange = (e) => {
@@ -24,27 +51,38 @@ class App extends Component {
   
   onSubmit = (e) => {
     e.preventDefault();
-  
+    
     let foodQuery = this.state.foodInput;
+    this.setState({
+      isLoaded: false,
+      errorMessage: '',
+      output: []
+    });
 
-    fetch(`https://api.punkapi.com/v2/beers?food=${foodQuery}`)
-    .then(
-      res => {
-        return res.json();
-      })
+    const isValid = this.validate();
+
+    if(isValid) {
+      fetch(`https://api.punkapi.com/v2/beers?food=${foodQuery}`)
       .then(
-        data => {
-          this.setState({
-            output: data
-          })
-        }
+        res => {
+          return res.json();
+        })
+        .then(
+          data => {
+            this.setState({
+              output: data,
+              isLoaded: true
+            })
+          }
+        )
+      .catch(
+        error => console.log(error)
       )
-    .catch(
-      error => console.log(error)
-    )
+    }
   }
 
   render() {
+    let loading = this.state.isLoaded ? <Output output={this.state.output} /> : <Loader />
     return (
       <div>
         <div className="container">
@@ -54,9 +92,9 @@ class App extends Component {
               <Input handleChange={this.onHandleChange} handleSubmit={this.onSubmit} />
             </div>
           </div>
-        
-          <Message />
-          <Output output={this.state.output} />
+          {loading}
+          <Message errorMessage={this.state.errorMessage} />
+          
         </div>
       </div>
     );
