@@ -69,6 +69,9 @@ class App extends Component {
         })
         .then(
           data => {
+            if(data.length === 0) {
+              this.setState({errorMessage: 'No matches found'});
+            }
             this.setState({
               output: data,
               isLoaded: true
