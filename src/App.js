@@ -62,25 +62,29 @@ class App extends Component {
     const isValid = this.validate();
 
     if(isValid) {
-      fetch(`https://api.punkapi.com/v2/beers?food=${foodQuery}`)
-      .then(
-        res => {
-          return res.json();
-        })
+      const getResults = () => {
+        fetch(`https://api.punkapi.com/v2/beers?food=${foodQuery}`)
         .then(
-          data => {
-            if(data.length === 0) {
-              this.setState({errorMessage: 'No matches found'});
+          res => {
+            return res.json();
+          })
+          .then(
+            data => {
+              if(data.length === 0) {
+                this.setState({errorMessage: 'No matches found'});
+              }
+              this.setState({
+                output: data,
+                isLoaded: true
+              })
             }
-            this.setState({
-              output: data,
-              isLoaded: true
-            })
-          }
+          )
+        .catch(
+          error => console.log(error)
         )
-      .catch(
-        error => console.log(error)
-      )
+      }
+
+      setTimeout(getResults, 1000);
     }
   }
 
