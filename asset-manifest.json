@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/react-food-beer-pairer/static/css/main.9f7dcb87.chunk.css",
-    "main.js": "/react-food-beer-pairer/static/js/main.64ce4c74.chunk.js",
-    "main.js.map": "/react-food-beer-pairer/static/js/main.64ce4c74.chunk.js.map",
+    "main.css": "/react-food-beer-pairer/static/css/main.0f455303.chunk.css",
+    "main.js": "/react-food-beer-pairer/static/js/main.bd91b3d8.chunk.js",
+    "main.js.map": "/react-food-beer-pairer/static/js/main.bd91b3d8.chunk.js.map",
     "runtime~main.js": "/react-food-beer-pairer/static/js/runtime~main.41d4556b.js",
     "runtime~main.js.map": "/react-food-beer-pairer/static/js/runtime~main.41d4556b.js.map",
     "static/js/2.d16ba94f.chunk.js": "/react-food-beer-pairer/static/js/2.d16ba94f.chunk.js",
     "static/js/2.d16ba94f.chunk.js.map": "/react-food-beer-pairer/static/js/2.d16ba94f.chunk.js.map",
     "index.html": "/react-food-beer-pairer/index.html",
-    "precache-manifest.3fe4c618f56bda7378d62cc2433a93e0.js": "/react-food-beer-pairer/precache-manifest.3fe4c618f56bda7378d62cc2433a93e0.js",
+    "precache-manifest.0f1977e48dbe120440b1de9ffce2f5dc.js": "/react-food-beer-pairer/precache-manifest.0f1977e48dbe120440b1de9ffce2f5dc.js",
     "service-worker.js": "/react-food-beer-pairer/service-worker.js",
-    "static/css/main.9f7dcb87.chunk.css.map": "/react-food-beer-pairer/static/css/main.9f7dcb87.chunk.css.map"
+    "static/css/main.0f455303.chunk.css.map": "/react-food-beer-pairer/static/css/main.0f455303.chunk.css.map",
+    "static/media/App.css": "/react-food-beer-pairer/static/media/beer-1.e0be79e5.jpg"
   }
 }

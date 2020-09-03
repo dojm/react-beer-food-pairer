@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-food-beer-pairer/precache-manifest.3fe4c618f56bda7378d62cc2433a93e0.js"
+  "/react-food-beer-pairer/precache-manifest.0f1977e48dbe120440b1de9ffce2f5dc.js"
 );
 
 self.addEventListener('message', (event) => {
