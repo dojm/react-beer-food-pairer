@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 function Header() {
-  return(
+  return (
     <div>
-      <h1>Food+BrewDog Beer</h1>
+      <h1 id="title">Food + Beer Pairings </h1>
 
       <p>Wondering what beer would go well with your meal?</p>
-      <p>Just enter in what foods you're eating to find a recommended beer pairing.</p>  
+      <p>Find your perfect BrewDog beer pairing below!</p>
     </div>
-  );  
+  );
 }
 
 export default Header;

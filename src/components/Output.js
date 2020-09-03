@@ -1,17 +1,18 @@
-import React from 'react';
-import Beer from './Beer'
+import React from "react";
+import Beer from "./Beer";
 
-const Output = ({output}) => {
+const Output = ({ output }) => {
   const outputList = output.map((beer, i) => {
-    return(
-      <Beer 
-        key={i+i}
-        name={beer.name}
-        img={beer.image_url}
-        abv={beer.abv}
-        foodPairing={beer.food_pairing}
+    const { name, image_url, abv, food_pairing } = beer;
+
+    return (
+      <Beer
+        key={i + i}
+        name={name}
+        img={image_url}
+        abv={abv}
+        foodPairing={food_pairing}
       />
-      
     );
   });
 
@@ -22,6 +23,6 @@ const Output = ({output}) => {
       </div>
     </div>
   );
-}
+};
 
 export default Output;

@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
-import Header from './components/Header';
-import Input from './components/Input';
-import Message from './components/Message';
-import Output from './components/Output';
-import Loader from './components/Loader';
+import React, { Component } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Input from "./components/Input";
+import Message from "./components/Message";
+import Output from "./components/Output";
+import Loader from "./components/Loader";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      foodInput: '',
+      foodInput: "",
       output: [],
       isLoaded: true,
-      errorMessage: ''
-    }
+      errorMessage: "",
+    };
   }
 
   validate = () => {
@@ -23,85 +23,86 @@ class App extends Component {
     const regex = /^[A-Z]+$/i;
     let regexResult = regex.test(foodQuery);
 
-    if(!this.state.foodInput) {
+    if (!this.state.foodInput) {
       this.setState({
-        errorMessage: 'Please enter a query',
+        errorMessage: "Please enter a query",
         isLoaded: true,
       });
       return false;
     }
 
-    if(regexResult === false) {
+    if (regexResult === false) {
       this.setState({
-        errorMessage: 'Please enter alphabetical characters only',
+        errorMessage: "Please enter alphabetical characters only",
         isLoaded: true,
       });
       return false;
     }
 
     return true;
-  }
+  };
 
   onHandleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-    console.log(e.target.value)
-  }
-  
+    console.log(e.target.value);
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
-    
+
     let foodQuery = this.state.foodInput;
     this.setState({
       isLoaded: false,
-      errorMessage: '',
-      output: []
+      errorMessage: "",
+      output: [],
     });
 
     const isValid = this.validate();
 
-    if(isValid) {
+    if (isValid) {
       const getResults = () => {
         fetch(`https://api.punkapi.com/v2/beers?food=${foodQuery}`)
-        .then(
-          res => {
+          .then((res) => {
             return res.json();
           })
-          .then(
-            data => {
-              if(data.length === 0) {
-                this.setState({errorMessage: 'No matches found'});
-              }
-              this.setState({
-                output: data,
-                isLoaded: true
-              })
+          .then((data) => {
+            if (data.length === 0) {
+              this.setState({ errorMessage: "No matches found" });
             }
-          )
-        .catch(
-          error => console.log(error)
-        )
-      }
+            this.setState({
+              output: data,
+              isLoaded: true,
+            });
+          })
+          .catch((error) => console.log(error));
+      };
 
       setTimeout(getResults, 1000);
     }
-  }
+  };
 
   render() {
-    let loading = this.state.isLoaded ? <Output output={this.state.output} /> : <Loader />
+    let loading = this.state.isLoaded ? (
+      <Output output={this.state.output} />
+    ) : (
+      <Loader />
+    );
     return (
       <div>
         <div className="container">
           <div className="row">
             <div className="col-sm-10 offset-sm-1">
               <Header />
-              <Input handleChange={this.onHandleChange} handleSubmit={this.onSubmit} />
+              <Input
+                handleChange={this.onHandleChange}
+                handleSubmit={this.onSubmit}
+              />
             </div>
           </div>
           {loading}
           <Message errorMessage={this.state.errorMessage} />
-          
         </div>
       </div>
     );
